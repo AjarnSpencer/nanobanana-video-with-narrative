@@ -1,9 +1,24 @@
 {
-  "name": "audiovisual-video-stitcher",
+  "name": "nanobanana-video-with-narrative",
+  "displayName": "Nanobanana Video with Narrative",
   "version": "1.0.0",
-  "description": "Universal audio-visual production suite for stitching podcast audio, monographs, and voice tracks with single featured images or multi-image slideshows into broadcast-grade MP4 video files via FFmpeg.",
+  "description": "Universal audio-visual production suite for stitching Nanobanana visuals, multi-image slideshow plates, and spoken audio narratives into broadcast-ready MP4 videos.",
   "author": "Ajarn Spencer Littlewood",
-  "homepage": "https://github.com/AjarnSpencer/agy-audiovisual-video-stitcher",
+  "homepage": "https://github.com/AjarnSpencer/nanobanana-video-with-narrative",
   "license": "MIT",
-  "logo": "assets/logo.svg"
+  "logo": "assets/logo.svg",
+  "keywords": [
+    "nanobanana",
+    "video",
+    "narrative",
+    "podcast",
+    "slideshow",
+    "ffmpeg",
+    "antigravity"
+  ],
+  "suggestedPrompts": [
+    "Stitch Nanobanana 4:3 plates with the narrative audio into an MP4 video",
+    "Generate a 16:9 widescreen video from audio track and image gallery",
+    "Render batch videos from the Nanobanana narrative manifest"
+  ]
 }

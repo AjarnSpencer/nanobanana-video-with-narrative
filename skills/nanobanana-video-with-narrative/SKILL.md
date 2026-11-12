@@ -1,26 +1,26 @@
 ---
-name: audiovisual-video-stitcher
+name: nanobanana-video-with-narrative
 description: >-
-  Universal audio-visual production suite for stitching podcast audio, monographs, and voice tracks
-  with single featured images or multi-image slideshows into broadcast-grade MP4 video files.
-  Includes FFmpeg still-image tuning, crossfade transition engines, and batch multiprocessing.
+  Universal audio-visual production suite for stitching Nanobanana visuals, multi-image slideshow plates,
+  and spoken audio narratives into broadcast-ready MP4 videos. Features FFmpeg still-image tuning,
+  dynamic multi-slide duration calculations, and YouTube EDSA compliance safeguards.
 ---
 
-# Universal Audio-Visual & Slideshow MP4 Video Stitcher Skill
+# Nanobanana Video with Narrative (`nanobanana-video-with-narrative`)
 
-This skill provides complete operational recipes, FFmpeg configurations, and automated Python pipelines for turning audio podcasts, monographs, voice tracks, and spoken guides into high-definition `.mp4` video files for syndication, social channels, and YouTube broadcasting.
+This skill provides complete operational recipes, FFmpeg configurations, and automated Python pipelines for turning Nanobanana / Imagen visual plates and spoken audio narratives (podcasts, monographs, tutorials, talk shows) into high-definition `.mp4` video files for YouTube broadcasting, social syndication, and digital archives.
 
 ---
 
-## 1. Single Still-Image Video Generation (Podcast Monograph)
+## 1. Single Hero Image Video Generation
 
-When an audio podcast or voice monograph has a single featured/default hero image (e.g., a 4:3 art portrait or botanical strain photo):
+When a narrative track has a single featured Nanobanana plate (e.g., a 4:3 art portrait, botanical specimen, or hero banner):
 
 ### FFmpeg Command Recipe
 ```bash
 ffmpeg -y -loop 1 -framerate 1 \
-  -i "/path/to/featured_image.jpg" \
-  -i "/path/to/podcast_audio.mp3" \
+  -i "/path/to/nanobanana_hero.jpg" \
+  -i "/path/to/narrative_audio.mp3" \
   -c:v libx264 -tune stillimage -preset fast -crf 18 -threads 2 \
   -c:a aac -b:a 192k -pix_fmt yuv420p \
   -vf "scale=1280:960:force_original_aspect_ratio=decrease,pad=1280:960:(ow-iw)/2:(oh-ih)/2,format=yuv420p" \
@@ -29,30 +29,30 @@ ffmpeg -y -loop 1 -framerate 1 \
 
 ### Parameter Breakdown
 - `-loop 1`: Loops the input image indefinitely until the shortest stream terminates.
-- `-c:v libx264 -tune stillimage`: Compresses static frames with minimal CPU and maximum visual fidelity.
+- `-c:v libx264 -tune stillimage`: Compresses static frames with minimal CPU usage and maximum visual fidelity.
 - `-vf "scale=...:decrease,pad=...":` Preserves original image aspect ratio without distortion, adding clean letterbox/pillarbox padding if needed.
-  - **4:3 Aspect (Portraits & Botanical Art):** `1280x960`
+  - **4:3 Aspect (Nanobanana Portraits & Plates):** `1280x960`
   - **16:9 Aspect (Widescreen / Landscapes):** `1920x1080`
   - **1:1 Aspect (Square / Cover Art):** `1080x1080`
   - **9:16 Aspect (Shorts / Reels / Vertical):** `1080x1920`
 - `-c:a aac -b:a 192k`: High-fidelity stereo audio encoding.
-- `-shortest`: Ends video immediately when audio terminates.
+- `-shortest`: Ends video immediately when the narrative audio stream terminates.
 
 ---
 
-## 2. Multi-Image Slideshow Video Generation (Dynamic Concat)
+## 2. Multi-Plate Slideshow Video Generation (Dynamic Concat)
 
-When multiple body images or gallery photos exist for an article:
+When multiple Nanobanana story plates exist for a narrative (e.g., 4 sequential monograph plates):
 
-1. **Determine Slide Duration**:
-   $$\text{Slide Duration} = \frac{\text{Total Audio Duration}}{\text{Number of Images}}$$
+1. **Calculate Slide Duration**:
+   $$\text{Slide Duration} = \frac{\text{Total Narrative Audio Duration}}{\text{Number of Image Plates}}$$
 2. **Execute via the Bundled Helper Script**:
    Use the Python helper script [`render_av_video.py`](./scripts/render_av_video.py):
    ```bash
    python3 ./scripts/render_av_video.py \
-     --images /path/to/img1.jpg /path/to/img2.jpg /path/to/img3.jpg \
-     --audio /path/to/audio.mp3 \
-     --output "~/Videos/Entity - Brand Monograph.mp4" \
+     --images plate1.jpg plate2.jpg plate3.jpg plate4.jpg \
+     --audio narrative_audio.mp3 \
+     --output "~/Videos/Story - Nanobanana Monograph.mp4" \
      --aspect 4:3
    ```
 
@@ -60,7 +60,7 @@ When multiple body images or gallery photos exist for an article:
 
 ## 3. Multiprocessing Batch Production Engine
 
-To render multiple videos concurrently from a JSON manifest without maxing out CPU cores:
+To render multiple narrative videos concurrently from a JSON manifest without maxing out CPU cores:
 
 ```bash
 python3 ./scripts/render_av_video.py \
@@ -72,14 +72,15 @@ See [`examples/batch_manifest.example.json`](./examples/batch_manifest.example.j
 ```json
 [
   {
-    "title": "Ancient Temple Bells - Episode 01",
+    "title": "Historical Retrospective - Plate Series",
     "images": [
-      "~/Pictures/temple_entrance.jpg",
-      "~/Pictures/bell_tower.jpg"
+      "~/Pictures/plate_01.jpg",
+      "~/Pictures/plate_02.jpg",
+      "~/Pictures/plate_03.jpg"
     ],
-    "audio": "~/Music/episode_01.mp3",
-    "aspect": "16:9",
-    "output": "~/Videos/Ancient Temple Bells - Episode 01.mp4"
+    "audio": "~/Music/narrative_audio.mp3",
+    "aspect": "4:3",
+    "output": "~/Videos/Historical Retrospective.mp4"
   }
 ]
 ```
@@ -99,7 +100,7 @@ See [`examples/batch_manifest.example.json`](./examples/batch_manifest.example.j
 ## 5. YouTube Syndication & Distribution Best Practices
 
 - **Staging Review:** Default uploaded video privacy to `unlisted` for staging and editorial verification before public release.
-- **Custom Thumbnails:** Attach the high-resolution hero image (4:3 or 16:9) directly as the custom video thumbnail.
+- **Custom Thumbnails:** Attach the high-resolution Nanobanana hero image (4:3 or 16:9) directly as the custom video thumbnail.
 - **Inbound Tracking:** Embed the canonical blog article or monograph permalink in the video description using tracking parameters (e.g. `?utm_source=youtube`).
 
 ---

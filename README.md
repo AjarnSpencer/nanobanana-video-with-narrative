@@ -1,13 +1,13 @@
-# 🎬 Antigravity Audio-Visual Video Stitcher (`audiovisual-video-stitcher`)
+# 🍌 Nanobanana Video with Narrative (`nanobanana-video-with-narrative`)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FFmpeg: Required](https://img.shields.io/badge/FFmpeg-Required-red.svg)](https://ffmpeg.org/)
 [![CLI: Antigravity & Gemini](https://img.shields.io/badge/CLI-Antigravity%20%7C%20Gemini-purple.svg)](https://github.com/google-gemini)
 
-A portable, cross-platform **Skill & Plugin** for **Google Antigravity CLI** (`agy`) and the command line. It turns audio podcasts, voice monographs, tutorials, talk radio broadcasts, and meditation guides into broadcast-grade `.mp4` videos via FFmpeg with zero third-party Python dependencies.
+A portable, cross-platform **Skill & Plugin** for **Google Antigravity CLI** (`agy`). It seamlessly pairs **Nanobanana** / Imagen visual plates, multi-image slideshow galleries, and spoken audio narratives (podcasts, monographs, tutorials, talk shows) into broadcast-grade `.mp4` video productions using FFmpeg with zero external Python library dependencies.
 
-Supports both **single still-image featured artwork** (using ultra-efficient H.264 still-image tuning) and **dynamic multi-image slideshows** automatically timed and synchronized to speech duration.
+Supports both **single still-image featured artwork** (using ultra-efficient H.264 still-image tuning) and **dynamic multi-image story plates** automatically timed and synchronized to speech duration.
 
 ---
 
@@ -15,38 +15,41 @@ Supports both **single still-image featured artwork** (using ultra-efficient H.2
 
 ```mermaid
 graph TD
-    UserPrompt([User Prompt / Batch Manifest]) --> Stitcher{render_av_video.py}
+    UserPrompt([User Prompt / Batch Manifest]) --> Engine{render_av_video.py}
     
-    subgraph Inputs
-        ImgSingle[Single Hero Image]
-        ImgMulti[Multi-Image Slideshow Gallery]
-        AudioIn[Podcast Audio .mp3 / .wav]
+    subgraph Nanobanana Visuals
+        PlateSingle[Nanobanana Hero Plate]
+        PlateMulti[Multi-Plate Story Slideshow]
     end
 
-    ImgSingle --> Stitcher
-    ImgMulti --> Stitcher
-    AudioIn --> Stitcher
+    subgraph Spoken Narrative
+        AudioIn[Neural TTS / Podcast Narration Track]
+    end
+
+    PlateSingle --> Engine
+    PlateMulti --> Engine
+    AudioIn --> Engine
 
     subgraph Processing Engine
-        Stitcher --> DurationProbe[ffprobe: Audio Duration Probe]
+        Engine --> DurationProbe[ffprobe: Audio Duration Probe]
         DurationProbe --> ConcatMath[Even Slide Duration Divider]
-        ConcatMath --> AspectScaler[Aspect Ratio Preserver & Letterbox Pad]
+        ConcatMath --> AspectScaler[Aspect Ratio Preserver & Auto Letterbox]
         AspectScaler --> FFmpegCore[FFmpeg libx264 Still-Image & AAC 192k]
     end
 
-    FFmpegCore --> VideoOut[Broadcast-Grade MP4 Video]
-    VideoOut --> YouTube[YouTube / Social Video Syndication]
+    FFmpegCore --> VideoOut[Broadcast-Ready MP4 Video]
+    VideoOut --> Syndication[YouTube & Multi-Platform Syndication]
 ```
 
 ---
 
 ## 🌟 Key Features
 
-- **System & Username Agnostic:** Uses dynamic path resolution and relative links. Works out-of-the-box on Linux, macOS, and Windows.
+- **System & Username Agnostic:** Resolves paths dynamically across Linux, macOS, and Windows with zero hardcoded environment paths.
 - **Zero Python Dependencies:** Uses only Python standard library modules (`os`, `sys`, `subprocess`, `argparse`, `json`, `pathlib`, `concurrent.futures`).
-- **Single Still-Image Tuning:** Applies `-c:v libx264 -tune stillimage -crf 18 -threads 2` to render high-fidelity podcast videos with minimal CPU and tiny file sizes.
+- **Single Hero Image Tuning:** Applies `-c:v libx264 -tune stillimage -crf 18 -threads 2` to render high-fidelity podcast videos with minimal CPU and small file sizes.
 - **Automated Slideshow Synchronization:** Probes audio duration via `ffprobe`, calculates $\text{Slide Duration} = \frac{\text{Total Duration}}{\text{Image Count}}$, and stitches images sequentially with concat demuxing.
-- **Universal Aspect Ratio Matrix:** Automatically prevents stretching or warping by applying clean letterbox or pillarbox padding.
+- **Universal Aspect Ratio Matrix:** Automatically prevents distortion or warping by applying clean letterbox or pillarbox padding.
 - **Concurrent Batch Engine:** Includes built-in multi-process worker pool (`--batch manifest.json --workers 2`) for bulk rendering.
 - **Antigravity CLI Native:** Fully validated with `agy plugin validate --strict`.
 
@@ -56,7 +59,7 @@ graph TD
 
 | Aspect Ratio | Resolution | Best Suited For | Auto-Padding Behavior |
 | :---: | :---: | :--- | :--- |
-| **`4:3`** | `1280x960` | Classical art, amulet portraits, botanical monographs | Preserves 4:3 canvas with clean borders |
+| **`4:3`** | `1280x960` | Classical art, amulet portraits, botanical monographs, Nanobanana 4:3 plates | Preserves 4:3 canvas with clean borders |
 | **`16:9`** | `1920x1080` | Standard YouTube widescreen, documentary landscapes | Full HD 1080p canvas with auto-pillarboxing |
 | **`1:1`** | `1080x1080` | Instagram feed posts, square album artwork | 1:1 square canvas |
 | **`9:16`** | `1080x1920` | YouTube Shorts, TikTok, Instagram Reels | Vertical full HD mobile canvas |
@@ -71,11 +74,11 @@ Clone the repository directly into your global or project plugins directory:
 
 ```bash
 # Global installation (available everywhere in Antigravity CLI)
-git clone https://github.com/AjarnSpencer/agy-audiovisual-video-stitcher.git \
-  ~/.gemini/config/plugins/audiovisual-video-stitcher
+git clone https://github.com/AjarnSpencer/nanobanana-video-with-narrative.git \
+  ~/.gemini/config/plugins/nanobanana-video-with-narrative
 
 # Validate plugin
-agy plugin validate ~/.gemini/config/plugins/audiovisual-video-stitcher --strict
+agy plugin validate ~/.gemini/config/plugins/nanobanana-video-with-narrative --strict
 ```
 
 ### Option 2: Install as a Workspace Skill
@@ -84,9 +87,9 @@ If you want the skill available in a specific project or workspace:
 
 ```bash
 mkdir -p .agents/skills
-git clone https://github.com/AjarnSpencer/agy-audiovisual-video-stitcher.git /tmp/av-stitcher
-cp -r /tmp/av-stitcher/skills/audiovisual-video-stitcher .agents/skills/
-rm -rf /tmp/av-stitcher
+git clone https://github.com/AjarnSpencer/nanobanana-video-with-narrative.git /tmp/nb-video
+cp -r /tmp/nb-video/skills/nanobanana-video-with-narrative .agents/skills/
+rm -rf /tmp/nb-video
 ```
 
 ### Option 3: Standalone CLI Usage
@@ -94,9 +97,9 @@ rm -rf /tmp/av-stitcher
 Clone anywhere and run the script directly:
 
 ```bash
-git clone https://github.com/AjarnSpencer/agy-audiovisual-video-stitcher.git
-cd agy-audiovisual-video-stitcher
-python3 skills/audiovisual-video-stitcher/scripts/render_av_video.py --help
+git clone https://github.com/AjarnSpencer/nanobanana-video-with-narrative.git
+cd nanobanana-video-with-narrative
+python3 skills/nanobanana-video-with-narrative/scripts/render_av_video.py --help
 ```
 
 ---
@@ -129,38 +132,38 @@ Requires `ffmpeg` and `ffprobe` installed on your system:
 You can invoke the skill directly in natural language or with flags:
 
 ```text
-/audiovisual-video-stitcher --images hero.jpg --audio podcast.mp3 --output ~/Videos/Episode1.mp4 --aspect 4:3
+/nanobanana-video-with-narrative --images plate1.jpg plate2.jpg --audio narration.mp3 --output ~/Videos/Story.mp4 --aspect 4:3
 ```
 
 Or ask the agent conversationally:
 ```text
-Stitch my podcast audio at ~/Music/chapter1.mp3 with the 3 images in ~/Pictures/slides/ into a 16:9 MP4 video.
+Stitch my narrative audio at ~/Music/chapter1.mp3 with the 4 Nanobanana plates in ~/Pictures/story/ into a 4:3 video.
 ```
 
 ### 2. Standalone Terminal Command
 
-#### Single Still-Image Podcast Video (4:3 Portrait)
+#### Single Still-Image Video (4:3 Portrait)
 ```bash
-python3 skills/audiovisual-video-stitcher/scripts/render_av_video.py \
-  --images ~/Pictures/featured_hero.jpg \
-  --audio ~/Music/podcast_narration.mp3 \
+python3 skills/nanobanana-video-with-narrative/scripts/render_av_video.py \
+  --images ~/Pictures/nanobanana_hero.jpg \
+  --audio ~/Music/narrative_audio.mp3 \
   --aspect 4:3 \
-  --output ~/Videos/Podcast_Episode_01.mp4
+  --output ~/Videos/Nanobanana_Episode_01.mp4
 ```
 
-#### Multi-Image Synchronized Slideshow (16:9 Widescreen)
+#### Multi-Plate Synchronized Slideshow (16:9 Widescreen)
 ```bash
-python3 skills/audiovisual-video-stitcher/scripts/render_av_video.py \
-  --images slide1.jpg slide2.jpg slide3.jpg slide4.jpg \
-  --audio voice_track.wav \
+python3 skills/nanobanana-video-with-narrative/scripts/render_av_video.py \
+  --images plate1.jpg plate2.jpg plate3.jpg plate4.jpg \
+  --audio narrative_track.wav \
   --aspect 16:9 \
-  --title "Ancient Temples Monograph"
+  --title "Sacred Art Retrospective"
 ```
 
 #### Batch Processing via JSON Manifest
 ```bash
-python3 skills/audiovisual-video-stitcher/scripts/render_av_video.py \
-  --batch skills/audiovisual-video-stitcher/examples/batch_manifest.example.json \
+python3 skills/nanobanana-video-with-narrative/scripts/render_av_video.py \
+  --batch skills/nanobanana-video-with-narrative/examples/batch_manifest.example.json \
   --workers 3
 ```
 
@@ -173,9 +176,9 @@ python3 skills/audiovisual-video-stitcher/scripts/render_av_video.py \
   {
     "title": "Ancient Temple Bells - Episode 01",
     "images": [
-      "~/Pictures/temple_entrance.jpg",
-      "~/Pictures/bell_tower.jpg",
-      "~/Pictures/meditation_hall.jpg"
+      "~/Pictures/plate_entrance.jpg",
+      "~/Pictures/plate_bell_tower.jpg",
+      "~/Pictures/plate_meditation_hall.jpg"
     ],
     "audio": "~/Music/episode_01.mp3",
     "aspect": "16:9",
