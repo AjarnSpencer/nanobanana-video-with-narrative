@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary & concat files
+*.tmp
+temp_concat_*.txt
+
+# Media output test files
+*.mp4
+*.mp3
+*.wav
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+venv/
+.venv/

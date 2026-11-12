@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Ancient Temple Bells - Episode 01",
+    "images": [
+      "~/Pictures/temple_entrance.jpg",
+      "~/Pictures/bell_tower.jpg",
+      "~/Pictures/meditation_hall.jpg"
+    ],
+    "audio": "~/Music/episode_01.mp3",
+    "aspect": "16:9",
+    "output": "~/Videos/Ancient Temple Bells - Episode 01.mp4"
+  },
+  {
+    "title": "Botanical Terpene Retrospective",
+    "images": [
+      "~/Pictures/botanical_plate_01.jpg"
+    ],
+    "audio": "~/Music/botanical_guide.mp3",
+    "aspect": "4:3",
+    "output": "~/Videos/Botanical Terpene Retrospective.mp4"
+  },
+  {
+    "title": "Mindful Breathing Short",
+    "images": [
+      "~/Pictures/lotus_vertical.jpg"
+    ],
+    "audio": "~/Music/breathing_short.wav",
+    "aspect": "9:16",
+    "output": "~/Videos/Mindful Breathing Short.mp4"
+  }
+]

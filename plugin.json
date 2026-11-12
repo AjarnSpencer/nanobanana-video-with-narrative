@@ -1,0 +1,9 @@
+{
+  "name": "audiovisual-video-stitcher",
+  "version": "1.0.0",
+  "description": "Universal audio-visual production suite for stitching podcast audio, monographs, and voice tracks with single featured images or multi-image slideshows into broadcast-grade MP4 video files via FFmpeg.",
+  "author": "Ajarn Spencer Littlewood",
+  "homepage": "https://github.com/AjarnSpencer/agy-audiovisual-video-stitcher",
+  "license": "MIT",
+  "logo": "assets/logo.svg"
+}
